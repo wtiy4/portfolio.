@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alwaleed Alharbi portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="wrap-inner">
+        <div class="flip-inner" id="flipInner">
+          <!-- MAIN BENTO GRID -->
+          <div class="grid" id="mainGrid">
+            <div class="row row-hero">
+              <div class="card reveal hero">
+                <h1>Hey, I'm Alwaleed Alharbi</h1>
+                <div class="role-line">
+                  <span id="roleText"></span><span class="cursor">&nbsp;</span>
+                </div>
+              </div>
+
+              <div class="card" id="avatarCard">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <img src="memo.png" id="avatarImgFront" alt="Front" />
+                  </div>
+                  <div class="card-back">
+                    <img src="flipped.png" id="avatarImgBack" alt="Back" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row row-links">
+              <a
+                class="card reveal link-btn"
+                href="https://github.com/wtiy4"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"
+                  />
+                </svg>
+              </a>
+              <a
+                class="card reveal link-btn"
+                href="https://www.linkedin.com/in/alwaleed-alharbi-3700201b8/"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <path
+                    d="M8 11v5M8 8v.01M12 16v-5M12 11c0-1.5 1-2 2-2s2 .8 2 2v5"
+                  />
+                </svg>
+              </a>
+              <a class="card reveal link-btn" href="#" aria-label="Location">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 21s7-6.6 7-11.5A7 7 0 0 0 5 9.5C5 14.4 12 21 12 21z"
+                  />
+                  <circle cx="12" cy="9.5" r="2.3" />
+                </svg>
+              </a>
+              <a
+                class="card reveal link-btn"
+                href="mailto:waleedbdulaziz@gmail.com"
+                aria-label="Email"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2.5" />
+                  <path d="M3.5 6.5 12 13l8.5-6.5" />
+                </svg>
+              </a>
+              <a
+                class="card reveal link-btn"
+                href="tel:+966530215274"
+                aria-label="Phone"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M4.5 3.5h3.6l1.4 4.2-2.1 1.7a11.5 11.5 0 0 0 5.2 5.2l1.7-2.1 4.2 1.4v3.6c0 1-1 1.7-2 1.5-4.5-.8-9.7-6-10.5-10.5-.2-1 .5-2 1.5-2z"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="row row-work">
+              <div
+                class="card reveal projects-card"
+                id="openProjects"
+                role="button"
+                tabindex="0"
+                aria-label="Open projects"
+              >
+                <div class="card-label-row">
+                  <span class="card-label">Projects</span>
+                  <span class="arrow-btn" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="13"
+                      height="13"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M7 17 17 7M9 7h8v8" />
+                    </svg>
+                  </span>
+                </div>
+                <div class="stack">
+                  <div class="sheet s1">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                  </div>
+                  <div class="sheet s2">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                  </div>
+                  <div class="sheet s3">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card reveal services-card">
+                <span class="card-label">Services</span>
+                <div class="tags">
+                  <span
+                    class="tag"
+                    style="top: 0; left: 0; --r: -8deg; --delay: 0s"
+                    >Frontend</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 3px; left: 112px; --r: 6deg; --delay: 0.5s"
+                    >React</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 38px; left: 16px; --r: 4deg; --delay: 1s"
+                    >Next.js</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 42px; left: 132px; --r: -5deg; --delay: 0.3s"
+                    >UI/UX</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 76px; left: 0px; --r: -3deg; --delay: 0.8s"
+                    >REST APIs</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 81px; left: 126px; --r: 8deg; --delay: 1.3s"
+                    >Tailwind</span
+                  >
+                  <span
+                    class="tag"
+                    style="top: 112px; left: 38px; --r: -6deg; --delay: 0.6s"
+                    >SEO</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="row row-tools">
+              <div class="card reveal tools-card">
+                <span class="card-label">Tools I use</span>
+                <div class="tool-grid">
+                  <div
+                    class="tool"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Figma"
+                  >
+                    <svg viewBox="0 0 24 24" width="26" height="26">
+                      <circle cx="12" cy="5.5" r="3.2" fill="#f24e1e" />
+                      <circle cx="8.8" cy="12" r="3.2" fill="#a259ff" />
+                      <circle cx="8.8" cy="18.5" r="3.2" fill="#0acf83" />
+                      <path
+                        d="M12 8.7a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4z"
+                        fill="#1abcfe"
+                      />
+                      <path
+                        d="M8.8 2.3h3.2a3.2 3.2 0 0 1 0 6.4H8.8a3.2 3.2 0 0 1 0-6.4z"
+                        fill="#ff7262"
+                      />
+                    </svg>
+                  </div>
+                  <div class="tool" tabindex="0" role="button" aria-label="Git">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+                      <circle cx="7" cy="17" r="2" fill="#f05033" />
+                      <circle cx="17" cy="7" r="2" fill="#f05033" />
+                      <circle cx="17" cy="15" r="2" fill="#f05033" />
+                      <path
+                        d="M8.4 15.6 15.4 8.6M17 9v4.2"
+                        stroke="#f05033"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="tool"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Node.js"
+                  >
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+                      <path
+                        d="M12 2.6 20.8 7.5v9L12 21.4 3.2 16.5v-9L12 2.6z"
+                        stroke="#3c873a"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+                      <text
+                        x="12"
+                        y="15.5"
+                        font-family="Sora,sans-serif"
+                        font-weight="700"
+                        font-size="8.5"
+                        fill="#3c873a"
+                        text-anchor="middle"
+                      >
+                        JS
+                      </text>
+                    </svg>
+                  </div>
+                  <div
+                    class="tool"
+                    tabindex="0"
+                    role="button"
+                    aria-label="VS Code"
+                  >
+                    <svg viewBox="0 0 24 24" width="26" height="26">
+                      <path
+                        d="M16.5 2.5 8 10 4 7l-1.6 1 4.4 4-4.4 4 1.6 1 4-3 8.5 7.5 4-2V4.5l-4-2z"
+                        fill="#007acc"
+                      />
+                      <path
+                        d="M16.5 6.2 10.8 11l5.7 4.8V6.2z"
+                        fill="#fff"
+                        opacity=".85"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="tool"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Tailwind CSS"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="27"
+                      height="27"
+                      fill="#38bdf8"
+                    >
+                      <path
+                        d="M6 10.2c.9-3.4 3-5.1 6.2-5.1 4.5 0 5.1 3.4 7.3 3.9-1.4 0-2.6.6-3.3 1.7-.9 1.2-1.9 2.4-4 2.4-2.1 0-2.7-1-3.3-1.7C7.9 10.6 7.1 10.2 6 10.2zm-4.5 7.2C2.4 14 4.5 12.3 7.7 12.3c4.5 0 5.1 3.4 7.3 3.9-1.4 0-2.6.6-3.3 1.7-.9 1.2-1.9 2.4-4 2.4-2.1 0-2.7-1-3.3-1.7-.9-1.1-1.7-1.5-2.9-1.2z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card reveal collab-card">
+                <h2>Let's collab!</h2>
+                <p>
+                  Got an idea? I'll help turn it into a fast, polished web
+                  experience.
+                </p>
+                <a href="mailto:waleedbdulaziz@gmail.com" class="contact-btn"
+                  >Contact me</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- IN-PAGE PROJECT VIEW (same page, no navigation) -->
+          <div class="project-view" id="projectView">
+            <div class="back-row">
+              <button class="back-btn" id="closeProjects" aria-label="Back">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <h2>Projects</h2>
+            </div>
+
+            <div class="proj-grid" id="projGrid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+      const avatarCard = document.getElementById("avatarCard");
+
+      avatarCard.addEventListener("click", () => {
+        avatarCard.classList.toggle("is-flipped");
+      });
+    </script>
+  </body>
+</html>
