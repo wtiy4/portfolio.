@@ -733,7 +733,7 @@ footer {
   }
   .card-front,
   .card-back {
-    transform: none; 
+    transform: none;
     transition: opacity 0.35s ease;
   }
   .card-back {
