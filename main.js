@@ -61,7 +61,7 @@ const projects = [
     desc: "An interactive color exploration app that generates and displays different shades of a selected hue, making it easy to discover and work with beautiful color variations.",
     tags: ["React", "Tailwind"],
     image: "./projects_imgs/hue.png",
-    link: "https://snazzy-syrniki-93af3a.netlify.app/",
+    link: "https://hue-maker.netlify.app/",
   },
   {
     title: "Call of Duty Website Clone",
