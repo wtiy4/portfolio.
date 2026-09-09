@@ -39,6 +39,7 @@ body {
   justify-content: center;
   padding: 20px;
   animation: driftBg 90s linear infinite;
+  touch-action: pan-y;
 }
 @keyframes driftBg {
   from {
@@ -75,7 +76,6 @@ h3 {
   perspective: 1000px;
 }
 
-/* wrap-inner: دمج التعريفين القديمين بتعريف واحد */
 .wrap-inner {
   position: relative;
   perspective: 1800px;
@@ -462,15 +462,13 @@ h3 {
 }
 
 /* ==========================================================
-   Project flip view — نسخة واحدة نظيفة فقط (بدون تكرار)
-   الارتفاع يُضبط بالجافاسكربت (syncFlipHeight)
+   Project flip view
    ========================================================== */
 .flip-inner {
   position: relative;
   width: 100%;
   transform-style: preserve-3d;
   transition: transform 0.85s cubic-bezier(0.4, 0.15, 0.2, 1);
-  /* لا نضع min-height هنا — الجافاسكربت يضبط height بالضبط */
 }
 .flip-inner.flipped {
   transform: rotateY(180deg);
@@ -492,7 +490,7 @@ h3 {
   transform: rotateY(180deg);
 }
 #projectView .proj-grid {
-  max-height: 700px; /* قيمة افتراضية قبل ما JS يحسبها بدقة */
+  max-height: 700px; /* fallback before JS measures it precisely */
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -502,6 +500,18 @@ h3 {
 #projectView .proj-grid::-webkit-scrollbar-thumb {
   background: var(--border-hover);
   border-radius: 10px;
+}
+
+/* -------- Touch/scroll fix: only the visible side should
+   ever receive pointer/touch events -------- */
+#projectView {
+  pointer-events: none;
+}
+.flip-inner.flipped #projectView {
+  pointer-events: auto;
+}
+.flip-inner.flipped #mainGrid {
+  pointer-events: none;
 }
 
 .back-row {
@@ -632,9 +642,6 @@ footer {
   .row-hero {
     grid-template-columns: 1fr;
   }
-  .avatar-card {
-    display: none;
-  }
   .row-work {
     grid-template-columns: 1fr;
   }
@@ -644,6 +651,35 @@ footer {
   .proj-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Avatar stays visible on mobile — we just disable the 3D
+     flip (root cause of the stacking/z-order bug on iOS Safari)
+     and swap it for a simple 2D crossfade instead. */
+  #avatarCard {
+    perspective: none;
+  }
+  .card-inner {
+    transform-style: flat;
+    transform: none !important;
+    transition: none;
+  }
+  .card-front,
+  .card-back {
+    transition: opacity 0.35s ease;
+  }
+  .card-back {
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #avatarCard.is-flipped .card-back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #avatarCard.is-flipped .card-front {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 @media (max-width: 360px) {
   .row-links {
@@ -651,9 +687,6 @@ footer {
   }
 }
 
-/* ==========================================================
-   كرت الأفاتار القابل للقلب (ميزتك الخاصة — بدون تغيير)
-   ========================================================== */
 #avatarCard {
   perspective: 1000px;
   cursor: pointer;
