@@ -171,12 +171,10 @@ h3 {
   }
 }
 
-/* Avatar wrapper (grid cell that centers the avatar card) */
+/* Avatar wrapper (grid cell that fills with the avatar card) */
 .avatar-card {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
+  padding: 0;
 }
 
 /* Contact icon row */
@@ -612,25 +610,6 @@ footer {
   margin-top: 24px;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 560px) {
-  body {
-    align-items: flex-start;
-    padding: 28px 14px;
-  }
-  .row-hero {
-    grid-template-columns: 1fr;
-  }
-  .row-work {
-    grid-template-columns: 1fr;
-  }
-  .row-tools {
-    grid-template-columns: 1fr;
-  }
-  .proj-grid {
-    grid-template-columns: 1fr;
-  }
-}
 @media (max-width: 360px) {
   .row-links {
     grid-template-columns: repeat(5, 1fr);
@@ -642,14 +621,12 @@ footer {
    can never overflow past its box (this was the mobile bug)
    ========================================================== */
 #avatarCard {
-  width: 88px;
-  height: 88px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   perspective: 1000px;
   cursor: pointer;
   background: transparent !important;
   border: none !important;
-  flex-shrink: 0;
 }
 
 .card-inner {
@@ -695,13 +672,58 @@ footer {
   object-fit: cover;
 }
 
-/* Mobile: smaller size + swap the 3D rotate for a 2D fade
-   (deep nested preserve-3d is what caused the stacking bug
-   on iOS Safari) */
+/* ---------- Responsive (single breakpoint, everything together) ---------- */
 @media (max-width: 560px) {
+  body {
+    align-items: flex-start;
+    padding: 28px 14px;
+  }
+  /* ---------- Merge avatar + icons into one 3x2 grid on mobile ----------
+     .row-hero and .row-links "dissolve" (display:contents) so their
+     children (hero text, avatar, and the 5 icons) become direct items
+     of .grid, which becomes a 3-column grid here. .hero spans the full
+     row on top; avatar-card + the 5 icons then auto-flow into a neat
+     3-col x 2-row block right below it. Desktop is untouched. */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .row-hero,
+  .row-links {
+    display: contents;
+  }
+  .hero {
+    grid-column: 1 / -1;
+  }
+  .avatar-card,
+  .link-btn {
+    aspect-ratio: 1;
+    height: auto;
+  }
+  .link-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+  .row-work,
+  .row-tools {
+    grid-column: 1 / -1;
+  }
+
+  .row-work {
+    grid-template-columns: 1fr;
+  }
+  .row-tools {
+    grid-template-columns: 1fr;
+  }
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Avatar: swap the 3D rotate for a 2D fade on mobile
+     (deep nested preserve-3d is what caused the stacking bug
+     on iOS Safari). Size now comes from the aspect-ratio square above. */
   #avatarCard {
-    width: 64px;
-    height: 64px;
     perspective: none;
   }
   .card-inner {
@@ -711,7 +733,7 @@ footer {
   }
   .card-front,
   .card-back {
-    transform: none;
+    transform: none; 
     transition: opacity 0.35s ease;
   }
   .card-back {
