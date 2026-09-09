@@ -171,33 +171,12 @@ h3 {
   }
 }
 
+/* Avatar wrapper (grid cell that centers the avatar card) */
 .avatar-card {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.avatar {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: avatarBob 3.2s ease-in-out infinite;
-}
-
-.avatar img {
-  width: 100%;
-}
-
-@keyframes avatarBob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  padding: 14px;
 }
 
 /* Contact icon row */
@@ -502,8 +481,8 @@ h3 {
   border-radius: 10px;
 }
 
-/* -------- Touch/scroll fix: only the visible side should
-   ever receive pointer/touch events -------- */
+/* Touch/scroll fix: only the visible side should ever receive
+   pointer/touch events, so the front page can always scroll */
 #projectView {
   pointer-events: none;
 }
@@ -633,7 +612,71 @@ footer {
   margin-top: 24px;
 }
 
-/* ---------- Responsive ---------- */
+@media (max-width: 360px) {
+  .row-links {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ==========================================================
+   Avatar flip card â€” explicit fixed pixel size so the image
+   can never overflow past its box (this was the mobile bug)
+   ========================================================== */
+#avatarCard {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  perspective: 1000px;
+  cursor: pointer;
+  background: transparent !important;
+  border: none !important;
+  flex-shrink: 0;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+#avatarCard.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+#avatarImgFront,
+#avatarImgBack {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Responsive (single breakpoint, everything together) ---------- */
 @media (max-width: 560px) {
   body {
     align-items: flex-start;
@@ -652,10 +695,12 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* Avatar stays visible on mobile — we just disable the 3D
-     flip (root cause of the stacking/z-order bug on iOS Safari)
-     and swap it for a simple 2D crossfade instead. */
+  /* Avatar: smaller size + swap the 3D rotate for a 2D fade
+     (deep nested preserve-3d is what caused the stacking bug
+     on iOS Safari) */
   #avatarCard {
+    width: 64px;
+    height: 64px;
     perspective: none;
   }
   .card-inner {
@@ -665,10 +710,10 @@ footer {
   }
   .card-front,
   .card-back {
+    transform: none;
     transition: opacity 0.35s ease;
   }
   .card-back {
-    transform: none;
     opacity: 0;
     pointer-events: none;
   }
@@ -680,62 +725,4 @@ footer {
     opacity: 0;
     pointer-events: none;
   }
-}
-@media (max-width: 360px) {
-  .row-links {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-#avatarCard {
-  perspective: 1000px;
-  cursor: pointer;
-  background: transparent !important;
-  border: none !important;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-#avatarCard.is-flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.card-front {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-.card-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotateY(180deg);
-}
-
-#avatarImgFront,
-#avatarImgBack {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
