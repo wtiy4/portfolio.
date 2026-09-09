@@ -171,10 +171,12 @@ h3 {
   }
 }
 
-/* Avatar wrapper (grid cell that fills with the avatar card) */
+/* Avatar wrapper (grid cell that centers the avatar card) */
 .avatar-card {
   display: flex;
-  padding: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
 }
 
 /* Contact icon row */
@@ -610,6 +612,25 @@ footer {
   margin-top: 24px;
 }
 
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  body {
+    align-items: flex-start;
+    padding: 28px 14px;
+  }
+  .row-hero {
+    grid-template-columns: 1fr;
+  }
+  .row-work {
+    grid-template-columns: 1fr;
+  }
+  .row-tools {
+    grid-template-columns: 1fr;
+  }
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 360px) {
   .row-links {
     grid-template-columns: repeat(5, 1fr);
@@ -617,16 +638,18 @@ footer {
 }
 
 /* ==========================================================
-   Avatar flip card â€” explicit fixed pixel size so the image
+   Avatar flip card — explicit fixed pixel size so the image
    can never overflow past its box (this was the mobile bug)
    ========================================================== */
 #avatarCard {
-  width: 100%;
-  height: 100%;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
   perspective: 1000px;
   cursor: pointer;
   background: transparent !important;
   border: none !important;
+  flex-shrink: 0;
 }
 
 .card-inner {
@@ -672,32 +695,13 @@ footer {
   object-fit: cover;
 }
 
-/* ---------- Responsive (single breakpoint, everything together) ---------- */
+/* Mobile: smaller size + swap the 3D rotate for a 2D fade
+   (deep nested preserve-3d is what caused the stacking bug
+   on iOS Safari) */
 @media (max-width: 560px) {
-  body {
-    align-items: flex-start;
-    padding: 28px 14px;
-  }
-  .row-hero {
-    grid-template-columns: 1fr;
-  }
-  .avatar-card {
-    height: 180px;
-  }
-  .row-work {
-    grid-template-columns: 1fr;
-  }
-  .row-tools {
-    grid-template-columns: 1fr;
-  }
-  .proj-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Avatar: swap the 3D rotate for a 2D fade on mobile
-     (deep nested preserve-3d is what caused the stacking bug
-     on iOS Safari). Size now comes from .avatar-card height above. */
   #avatarCard {
+    width: 64px;
+    height: 64px;
     perspective: none;
   }
   .card-inner {
